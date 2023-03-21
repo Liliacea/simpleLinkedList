@@ -63,10 +63,10 @@ public class simpleLinkedList<E> implements Iterable<E> {
 
             @Override
             public boolean hasNext() {
-                if (current != null)
-                    return true;
-                else
+                if (current == null)
+
                     return false;
+                return true;
             }
 
             @Override
