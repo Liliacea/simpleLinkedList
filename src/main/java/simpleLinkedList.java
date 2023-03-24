@@ -102,16 +102,23 @@ public class simpleLinkedList<E> implements Iterable<E> {
 
     public E delete(int index) {
         Node del = first;
-        for (int i = 1; i < size; i++) {
-            del = del.next;
+        for (int i = 0; i < size-1; i++) {
+
             if (i == index) {
-                if (del.next != null) {
-                    del.next.previous = del.previous;
-                    del.previous.next = del.next;
+                if(del.previous == null){
+                    first = del.next;
+
                 } else {
-                    del.previous.next = last;
+
+                    if (del.next != null && del.previous != null) {
+                        del.next.previous = del.previous;
+                        del.previous.next = del.next;
+                    } else {
+                        del.previous.next = last;
+                    }
                 }
             }
+            del = del.next;
         }
         size--;
         return (E) del.data;
